@@ -10,6 +10,6 @@ const logoSrc = '/PaLeva_Logo.svg';
             </div>
         </RouterLink>
 
-        <h1 class="flex-1 text-center text-2xl font-bold text-projectPurple">Cozinha</h1>
+        <h1 class="flex-1 text-center text-2xl font-bold text-projectPurple">App Cozinha</h1>
     </header>
 </template>
