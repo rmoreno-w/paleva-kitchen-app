@@ -8,8 +8,4 @@ export type Order = {
 
 export type statusKeys = 'waiting_kitchen_approval' | 'preparing' | 'canceled' | 'ready' | 'delivered';
 
-export type OrdersResult = {
-    orders: {
-        [key in Partial<statusKeys>]: Order[];
-    };
-};
+export type OrdersResult = { orders: Record<statusKeys, Order[]> } | { orders: Order[] };

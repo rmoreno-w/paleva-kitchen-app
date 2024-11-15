@@ -38,4 +38,12 @@
     .circle_button {
         @apply hover:cursor-pointer hover:brightness-90 font-medium flex items-center justify-center text-center p-2 border border-projectPurple rounded-[50%] w-7 h-7;
     }
+
+    .tag_button {
+        @apply rounded-3xl ring-transparent p-[6px] hover:cursor-pointer bg-projectPurple text-projectWhite transition duration-300 font-bold hover:brightness-90;
+    }
+
+    .tag_outline_button {
+        @apply rounded-3xl ring-transparent p-[6px] hover:cursor-pointer border-2 border-projectPurple transition duration-300 font-bold hover:brightness-90;
+    }
 }
