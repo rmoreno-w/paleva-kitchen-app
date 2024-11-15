@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AppHeader from './components/AppHeader.vue';
+</script>
 
 <template>
-    <h1>PaLevá Start</h1>
+    <AppHeader />
+
+    <main class="site-main">
+        <RouterView />
+    </main>
 </template>
