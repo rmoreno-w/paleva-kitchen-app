@@ -19,7 +19,7 @@ async function registerRestaurant(event: any) {
         .get<OrdersResult>(`http://localhost:3000/api/v1/orders?restaurant_code=${restaurantCode.value}`)
         .then((response) => {
             localStorage.setItem('restaurantCode', restaurantCode.value);
-            router.push('/orders');
+            router.replace('/orders');
             console.log(response.data.orders);
         })
         .catch((e) => (restaurantError.value = e.status));

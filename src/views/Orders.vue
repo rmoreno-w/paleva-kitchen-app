@@ -85,5 +85,10 @@ function isFilterActive(filter: string) {
     </nav>
 
     <UnfilteredOrderList v-if="!Array.isArray(orders)" :orders="orders" />
+
     <FilteredOrderList v-if="Array.isArray(orders)" :orders="orders" :filter="translatedStatus" />
+    <p v-if="Array.isArray(orders) && orders.length == 0" class="flex items-center">
+        <span class="text-xl pr-2">🕐</span> Ainda não há pedidos cadastrados
+        <span v-if="currentFilter !== ''">&nbsp;com este filtro</span>.
+    </p>
 </template>

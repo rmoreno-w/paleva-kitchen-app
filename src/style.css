@@ -16,11 +16,11 @@
     }
 
     h2 {
-        @apply text-2xl font-bold text-projectPurple;
+        @apply text-xl font-bold text-projectPurple;
     }
 
     h3 {
-        @apply text-xl font-bold text-projectBlack;
+        @apply text-lg font-bold text-projectBlack;
     }
 
     .input {

@@ -20,13 +20,15 @@ defineProps<{
                 :key="order.code"
                 class="hover:cursor-pointer border border-projectPurple p-4 rounded-lg w-fit"
             >
-                <h3 class="">
-                    Pedido - <span class="text-projectGreen">#</span
-                    ><span class="text-projectPurple">{{ order.code }}</span>
-                </h3>
-                <p><span class="font-bold">Cliente: </span>{{ order.customer_name }}</p>
-                <p><span class="font-bold">Data: </span>{{ formatDate(order.date) }}</p>
-                <p><span class="font-bold">Total: </span>{{ formatCurrency(order.total) }}</p>
+                <RouterLink :to="{ path: `/order/${order.code}` }">
+                    <h3 class="">
+                        Pedido - <span class="text-projectGreen">#</span
+                        ><span class="text-projectPurple">{{ order.code }}</span>
+                    </h3>
+                    <p><span class="font-bold">Cliente: </span>{{ order.customer_name }}</p>
+                    <p><span class="font-bold">Data: </span>{{ formatDate(order.date) }}</p>
+                    <p><span class="font-bold">Total: </span>{{ formatCurrency(order.total) }}</p>
+                </RouterLink>
             </li>
         </ul>
     </section>
