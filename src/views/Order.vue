@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import { formatCurrency, formatDate, statusTranslations } from '../helpers/functions';
 import { Order } from '../types';
 
 const route = useRoute();
+const router = useRouter();
 const orderCode = route.params.code;
 const restaurantCode = localStorage.getItem('restaurantCode');
 const toast = useToast();
@@ -25,7 +26,12 @@ async function getOrder() {
             order.value = response.data.order;
             console.log(response.data.order);
         })
-        .catch((e) => console.log(e.status));
+        .catch((e) => {
+            console.log(e.status);
+            toast.error(`Ops! :( Houve um erro ao buscar o Pedido no servidor`, {
+                timeout: 2000,
+            });
+        });
 }
 
 onMounted(async () => {
@@ -52,9 +58,19 @@ async function changeStatus(action: string) {
             });
         });
 }
+
+function redirectBack() {
+    router.back();
+}
 </script>
 
 <template>
+    <button
+        @click="redirectBack"
+        class="h-fit w-fit underline decoration-2 underline-offset-8 decoration-projectPurple mb-10 font-bold"
+    >
+        <span class="text-projectPurple"><</span> Voltar para Pedidos
+    </button>
     <div class="flex justify-between">
         <div>
             <h1>Pedido - <span class="text-projectGreen">#</span>{{ orderCode }}</h1>

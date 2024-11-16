@@ -7,8 +7,8 @@ import OrdersView from './views/Orders.vue';
 
 const routes = [
     { path: '/', component: HomeView },
-    { path: '/orders', component: OrdersView },
-    { path: '/order/:code', component: OrderView },
+    { path: '/orders', component: OrdersView, meta: { requiresRestaurantCode: true } },
+    { path: '/order/:code', component: OrderView, meta: { requiresRestaurantCode: true } },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFoundView },
 ];
 
@@ -17,10 +17,14 @@ const router = createRouter({
     routes,
 });
 
-// router.beforeEach((to, from) => {
-//     if (to !== ) {
-//       // initial navigation
-//     }
-//   })
+router.beforeEach((to, _) => {
+    const isRestaurantCodeSaved = localStorage.getItem('restaurantCode');
+
+    if (to.meta.requiresRestaurantCode === true && !isRestaurantCodeSaved) {
+        return {
+            path: '/',
+        };
+    }
+});
 
 export default router;

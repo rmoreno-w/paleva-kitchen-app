@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import axios from 'axios';
 import { computed, onMounted, ref } from 'vue';
+import { useToast } from 'vue-toastification';
 import FilteredOrderList from '../components/FilteredOrderList .vue';
 import UnfilteredOrderList from '../components/UnfilteredOrderList.vue';
 import { statusTranslations } from '../helpers/functions';
@@ -9,6 +10,7 @@ import { OrdersResult, statusKeys } from '../types';
 const orders = ref<OrdersResult['orders']>({} as OrdersResult['orders']);
 const currentFilter = ref<statusKeys | ''>('');
 const restaurantCode = localStorage.getItem('restaurantCode') || '';
+const toast = useToast();
 
 const translatedStatus = computed(() => {
     return currentFilter.value ? statusTranslations[currentFilter.value] : '';
@@ -25,7 +27,12 @@ async function getOrders() {
             orders.value = response.data.orders;
             console.log(response.data.orders);
         })
-        .catch((e) => console.log(e.status));
+        .catch((e) => {
+            console.log(e.status);
+            toast.error(`Ops! :( Houve um erro ao tentar buscar os Pedidos no servidor`, {
+                timeout: 2000,
+            });
+        });
 }
 
 async function filterByStatus(status: string) {
@@ -36,7 +43,12 @@ async function filterByStatus(status: string) {
             orders.value = response.data.orders;
             console.log(response.data.orders);
         })
-        .catch((e) => console.log(e.status));
+        .catch((e) => {
+            console.log(e.status);
+            toast.error(`Ops! :( Houve um erro ao tentar buscar os Pedidos no servidor`, {
+                timeout: 2000,
+            });
+        });
 }
 
 function isFilterActive(filter: string) {
