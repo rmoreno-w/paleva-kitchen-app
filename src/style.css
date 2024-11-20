@@ -27,6 +27,10 @@
         @apply bg-transparent border-2 border-projectPurple focus:bg-transparent transition-all duration-300 focus:outline-none focus:ring focus:ring-projectGreen focus:ring-offset-2 focus:ring-offset-projectWhite focus:border-projectGreen rounded p-2;
     }
 
+    .pure_button {
+        @apply hover:cursor-pointer p-3 rounded-md transition duration-300 font-bold hover:brightness-90 mt-4 focus:ring-offset-2 focus:ring-offset-projectWhite;
+    }
+
     .form_button {
         @apply hover:cursor-pointer bg-projectPurple text-projectWhite p-3 rounded-md transition duration-300 font-bold hover:brightness-90 mt-4 focus:ring focus:ring-projectPurple/70 focus:ring-offset-2 focus:ring-offset-projectWhite;
     }

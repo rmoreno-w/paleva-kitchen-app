@@ -58,15 +58,11 @@ async function changeStatus(action: string) {
             });
         });
 }
-
-function redirectBack() {
-    router.back();
-}
 </script>
 
 <template>
     <button
-        @click="redirectBack"
+        @click="router.back"
         class="h-fit w-fit underline decoration-2 underline-offset-8 decoration-projectPurple mb-10 font-bold"
     >
         <span class="text-projectPurple"><</span> Voltar para Pedidos
@@ -76,18 +72,34 @@ function redirectBack() {
             <h1>Pedido - <span class="text-projectGreen">#</span>{{ orderCode }}</h1>
             <h2 class="mt-4 text-projectBlack">
                 Data: <span class="text-projectPurple" v-if="order.date">{{ formatDate(order.date) }}</span> | Status:
-                <span class="text-projectPurple">{{ statusTranslations[order.status] }}</span>
+                <span class="text-projectRed" v-if="order.status == 'canceled'">{{
+                    statusTranslations[order.status]
+                }}</span>
+                <span class="text-projectPurple" v-else>{{ statusTranslations[order.status] }}</span>
             </h2>
         </div>
 
-        <nav class="flex flex-col items-center">
+        <nav class="flex flex-col items-center" v-if="order.status !== 'canceled' && order.status !== 'delivered'">
             <p class="font-bold">Alterar Status para</p>
             <div class="flex gap-4">
-                <button class="form_button" v-if="order.status !== 'preparing'" @click="changeStatus('prepare')">
+                <button
+                    class="form_button"
+                    v-if="order.status === 'waiting_kitchen_approval'"
+                    @click="changeStatus('prepare')"
+                >
                     Preparando
                 </button>
-                <button class="form_button" v-if="order.status !== 'ready'" @click="changeStatus('mark_ready')">
+                <button class="form_button" v-if="order.status === 'preparing'" @click="changeStatus('mark_ready')">
                     Pronto
+                </button>
+                <button class="form_button" v-if="order.status === 'ready'" @click="changeStatus('deliver')">
+                    Entregue
+                </button>
+                <button
+                    class="pure_button bg-projectRed text-projectWhite"
+                    @click="router.push(`/order/${orderCode}/cancel`)"
+                >
+                    Cancelado
                 </button>
             </div>
         </nav>
