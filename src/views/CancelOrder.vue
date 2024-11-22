@@ -39,6 +39,13 @@ async function cancelOrder(e: any) {
 </script>
 
 <template>
+    <button
+        @click="router.back"
+        class="h-fit w-fit underline decoration-2 underline-offset-8 decoration-projectPurple mb-10 font-bold"
+    >
+        <span class="text-projectPurple"><</span> Voltar para Pedido {{ orderCode }}
+    </button>
+
     <h1>Cancelar Pedido:</h1>
 
     <form class="flex flex-col max-w-[50%] gap-4 mt-10">

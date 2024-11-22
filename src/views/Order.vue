@@ -116,16 +116,17 @@ async function changeStatus(action: string) {
     </p>
 
     <ul class="flex flex-col gap-2 border-2 border-projectPurple rounded-md p-2 bg-projectPaperWhite">
-        <li class="grid grid-cols-5 border-b border-projectPurple pb-2 -mx-2">
+        <li class="grid grid-cols-6 border-b border-projectPurple pb-2 -mx-2">
             <span class="text-center font-bold text-projectPurple">Nome do Item</span>
             <span class="text-center font-bold text-projectPurple">Observações do Cliente</span>
             <span class="text-center font-bold text-projectPurple">Descrição da Porção</span>
             <span class="text-center font-bold text-projectPurple">Número de Porções</span>
             <span class="text-center font-bold text-projectPurple">Sub-Total</span>
+            <span class="text-center font-bold text-projectPurple">Sub-Total com Desconto</span>
         </li>
 
         <li
-            class="grid grid-cols-5 border-b last:border-0 border-projectPurple border-dashed py-2"
+            class="grid grid-cols-6 border-b last:border-0 border-projectPurple border-dashed py-2"
             v-for="item in order.items"
         >
             <span class="text-center font-mono">{{ item.item_name }}</span>
@@ -133,13 +134,16 @@ async function changeStatus(action: string) {
             <span class="text-center font-mono">{{ item.serving_description }}</span>
             <span class="text-center font-mono">{{ item.number_of_servings }}</span>
             <span class="text-center font-mono">{{ formatCurrency(item.subtotal) }}</span>
+            <span class="text-center font-mono">{{ formatCurrency(item.discounted_subtotal) }}</span>
         </li>
     </ul>
 
-    <div class="grid grid-cols-5 px-2 pt-4">
-        <div class="col-start-5 px-2">
+    <div class="grid grid-cols-6 px-2 pt-4">
+        <div class="col-start-6 px-2">
             <p class="font-bold text-lg text-center">Total do Pedido:</p>
             <p class="font-bold text-lg text-center text-projectPurple">{{ formatCurrency(order.total) }}</p>
+            <p class="font-bold text-lg text-center">Total com Desconto:</p>
+            <p class="font-bold text-lg text-center text-projectPurple">{{ formatCurrency(order.discounted_total) }}</p>
         </div>
     </div>
 

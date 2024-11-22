@@ -5,6 +5,7 @@ export type OrderItem = {
     number_of_servings: number;
     customer_notes: string;
     subtotal: number;
+    discounted_subtotal: number;
 };
 
 export type Order = {
@@ -13,6 +14,7 @@ export type Order = {
     code: string;
     date: string;
     total: number;
+    discounted_total: number;
     items: OrderItem[];
 };
 
